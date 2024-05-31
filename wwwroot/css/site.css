@@ -1,0 +1,47 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+header {
+    background-color: #4CAF50; /* Primary green header */
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+            /* Styles for profile, products, search, logout links */
+            nav ul li a:hover {
+                text-decoration: underline; /* Underline on hover */
+            }
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+    /* Adjust styles for smaller screens */
+    nav ul li {
+        display: block; /* Display links vertically on smaller screens */
+        margin: 10px 0; /* Add margin between links */
+    }
+}
+
+/* WCAG Compliance and Keyboard Accessibility styles */
+/* Ensure proper contrast, focus outlines, etc. */
+nav ul li a:focus {
+    outline: 2px solid #fff; /* White focus outline */
+    outline-offset: 2px; /* Offset focus outline for better visibility */
+}

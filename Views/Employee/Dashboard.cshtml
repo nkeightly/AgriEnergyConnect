@@ -1,0 +1,119 @@
+﻿@model IEnumerable<FarmerProfile>
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboardEmployee.css">
+    <title>Employee Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="toggle">
+                <div class="banner">
+                    <img src="~/images/logo.png" alt="Logo" class="banner-logo">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#" class="active dashboard-link">
+                    <span class="material-icons-sharp">dashboard</span>
+                    <h3>Home</h3>
+                </a>
+                <a href="@Url.Action("AddFarmerProfile", "Employee")">
+                    <span class="material-icons-sharp">person_outline</span>
+                    <h3>Profile Management</h3>
+                </a>
+                <a href="#dashboard-content" class="scroll-link">
+                    <span class="material-icons-sharp">inventory</span>
+                    <h3>Product Management</h3>
+                </a>
+                <a href="#right-section" class="scroll-link">
+                    <span class="material-icons-sharp">search</span>
+                    <h3>Search and Filtering</h3>
+                </a>
+                <div class="spacer"></div>
+                <a href="@Url.Action("Logout", "Employee")">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <main id="dashboard-content">
+            <h1>Farmer Dashboard</h1>
+            <div class="grid">
+                @foreach (var farmer in Model)
+                {
+                    if (farmer.FarmSize != 0 && farmer.Certifications != null && farmer.TypeOfFarming != null)
+                    {
+                        <div class="card" data-farmer-id="@farmer.Id">
+                            <div class="card-header">
+                                <img src="@farmer.ImagePath" alt="@farmer.Name" class="profile-img">
+                                <span class="material-icons-sharp info-icon" onclick="event.stopPropagation(); showAdditionalDetails(@farmer.Id)">info</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>@farmer.Name</h3>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </main>
+        <div id="farmer-details-modal">
+            <span class="close">&times;</span>
+            <div id="farmer-details"></div>
+        </div>
+        <div id="farmer-details" style="display: none;">
+            <button onclick="hideFarmerDetails()">Back</button>
+            <h2 id="farmer-name"></h2>
+            <div id="farmer-products"></div>
+        </div>
+        <!-- Add id to right-section for smooth scrolling -->
+        <div id="right-section" class="right-section">
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+            </div>
+            <div class="filter-bar">
+                <div class="lozenge search-category">
+                    <input type="text" placeholder="Search by category">
+                </div>
+                <div class="lozenge">
+                    <input type="text" id="start-date" placeholder="Start Date" onfocus="(this.type='date')">
+                </div>
+                <div class="lozenge">
+                    <input type="text" id="stop-date" placeholder="Stop Date" onfocus="(this.type='date')">
+                </div>
+                <button class="search-btn">
+                    <span class="material-icons-sharp">search</span>
+                </button>
+            </div>
+            <div id="product-results"></div>
+        </div>
+
+        <div class="video-section">
+            <div class="spacer2"></div>
+            <h2>Hey, <b>Employee!</b></h2>
+            <p>Shared Videos</p>
+            <div id="videos-container">
+                <!-- Videos will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    <script src="/js/Employee.js"></script>
+</body>
+</html>

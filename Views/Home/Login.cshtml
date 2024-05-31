@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="~/css/login.css">
+    <title>Agri-Energy Connect - Login</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form id="signup-form" asp-action="Login" method="post" enctype="multipart/form-data">
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <input type="hidden" name="actionType" value="register">
+                <input type="text" placeholder="Name" name="Name" aria-label="Name">
+                <input type="email" placeholder="Email" name="Email" aria-label="Email">
+                <input type="password" placeholder="Password" name="Password" aria-label="Password">
+                <select name="Role" aria-label="Role">
+                    <option value="farmer">Farmer</option>
+                    <option value="employee">Employee</option>
+                </select>
+                <div id="farmer-fields" class="additional-fields">
+                    <input type="text" placeholder="Location" name="Location" aria-label="Location">
+                    <input type="text" placeholder="Contact Info" name="ContactInfo" aria-label="Contact Info">
+                    <input type="file" name="Image" aria-label="Image">
+                </div>
+                <div id="employee-fields" class="additional-fields">
+                    <input type="text" placeholder="Department" name="Department" aria-label="Department">
+                    <input type="text" placeholder="Position" name="Position" aria-label="Position">
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="signin-form" asp-action="Login" method="post">
+                <h1>Sign In</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for sign-in</span>
+                <input type="hidden" name="actionType" value="login">
+                <input type="email" placeholder="Email" name="Email" aria-label="Email">
+                <input type="password" placeholder="Password" name="Password" aria-label="Password">
+                <a href="#">Forgot Your Password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all the site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all the site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+
+</html>

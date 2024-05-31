@@ -1,0 +1,42 @@
+﻿@model FarmerProfile
+
+@{
+    ViewData["Title"] = "Edit Farmer Profile";
+    Layout = "~/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<div class="card edit-profile-card">
+    <h1>Edit Farmer Profile</h1>
+    <form asp-action="EditFarmerProfile" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <div class="form-group">
+            <label for="FarmSize">Farm Size</label>
+            <input class="form-control" type="text" id="FarmSize" name="FarmSize" value="@Model.FarmSize" />
+            <span class="text-danger field-validation-valid" data-valmsg-for="FarmSize" data-valmsg-replace="true"></span>
+        </div>
+        <div class="form-group">
+            <label for="TypeOfFarming">Type Of Farming</label>
+            <input class="form-control" type="text" id="TypeOfFarming" name="TypeOfFarming" value="@Model.TypeOfFarming" />
+            <span class="text-danger field-validation-valid" data-valmsg-for="TypeOfFarming" data-valmsg-replace="true"></span>
+        </div>
+        <div class="form-group">
+            <label for="YearsOfExperience">Years Of Experience</label>
+            <input class="form-control" type="number" id="YearsOfExperience" name="YearsOfExperience" value="@Model.YearsOfExperience" />
+            <span class="text-danger field-validation-valid" data-valmsg-for="YearsOfExperience" data-valmsg-replace="true"></span>
+        </div>
+        <div class="form-group">
+            <label for="Certifications">Certifications</label>
+            <input class="form-control" type="text" id="Certifications" name="Certifications" value="@Model.Certifications" />
+            <span class="text-danger field-validation-valid" data-valmsg-for="Certifications" data-valmsg-replace="true"></span>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btn btn-save">Save</button>
+            <a href="/Employee/Dashboard" class="btn btn-back">Back</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

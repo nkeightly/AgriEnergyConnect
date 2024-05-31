@@ -1,0 +1,95 @@
+﻿@model IEnumerable<IGrouping<string, AgriEnergyConnect.Models.Product>>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/dashboard_styles.css">
+    <title>Farmer Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <img src="~/images/logo.png" alt="Logo" class="toggle-logo">
+                    <h2>Agri Energy <span class="danger">Connect</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="@Url.Action("AddProduct", "Farmer")">
+                    <span class="material-icons-sharp">inventory</span>
+                    <h3>Product Management</h3>
+                </a>
+                <a href="@Url.Action("Logout", "Farmer")">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <main>
+            <h1>Dashboard</h1>
+            <div class="categories">
+                @foreach (var categoryGroup in Model)
+                {
+                    <div class="category">
+                        <h2>@categoryGroup.Key</h2>
+                        <div class="product-cards">
+                            @foreach (var product in categoryGroup)
+                            {
+                                <div class="product-card">
+                                    <img src="@product.ImageUri" alt="@product.Name" class="product-image" />
+                                    <div class="product-info">
+                                        <h3 class="product-title">@product.Name</h3>
+                                        <p class="product-description">Produced on: @product.ProductionDate.ToShortDateString()</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </main>
+
+
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                
+                <div class="logo">
+                    <img src="/images/logo.png">
+                    <h2>Agri Energy Connect </h2>
+                    <p>New <span class="danger">Farmer</span></p>
+                </div>
+                <!-- Video section starts here -->
+                <div class="video-section">
+                    <h2>Hey, <b>Farmer</b></h2>
+                    <p>Shared Videos</p>
+                    <div id="videos-container">
+                        <!-- Videos will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="~/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Product>
+
+<h2>View Products</h2>
+
+<form asp-action="FilterProducts" method="get">
+    <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" name="category" class="form-control" />
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Production Date</th>
+            <th>Farmer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Category</td>
+                <td>@product.ProductionDate.ToShortDateString()</td>
+                <td>@product.FarmerProfile.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
